@@ -1,3 +1,5 @@
+
+import pyperclip
 from PyQt6 import QtWidgets
 
 from CommentBuilderMainWindow_GUI import Ui_CommentBuilderMainWindow_GUI
@@ -16,6 +18,10 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
         self.setupUi(self)
 
     #Events
+    def _btn_clicked(self):
+        output_text = self.txtOutput.toPlainText()
+        pyperclip.copy(output_text)
+
     def _textbox_text_changed(self):
         self.generate_comment()
 
@@ -114,6 +120,16 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
         self.generate_comment()
 
     def _secondary_datum_changed(self, index):
+
+        if self.cboSecondary.currentIndex() > 0:
+            self.cboTertiary.clear()
+            self.cboTertiary.addItems(self.secondary_datum_list)
+            self.cboTertiary.removeItem(self.cboPrimary.currentIndex())
+            self.cboTertiary.removeItem(self.cboSecondary.currentIndex())
+        self.generate_comment()
+
+    def _tertiary_datum_changed(self, index):
+
         self.generate_comment()
 
     # Public Functions
@@ -138,12 +154,14 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
 
         self.cboPrimary.currentIndexChanged.connect(self._primary_datum_changed)
         self.cboSecondary.currentIndexChanged.connect(self._secondary_datum_changed)
-        self.cboTertiary.currentIndexChanged.connect(self._secondary_datum_changed)
+        self.cboTertiary.currentIndexChanged.connect(self._tertiary_datum_changed)
 
         self.txtTo.textChanged.connect(self._textbox_text_changed)
         self.txtFrom.textChanged.connect(self._textbox_text_changed)
         self.txtTolerance.textChanged.connect(self._textbox_text_changed)
         self.txtAmount.textChanged.connect(self._textbox_text_changed)
+
+        self.btnCopy.clicked.connect(self._btn_clicked)
 
     def load_comboboxes(self):
         self.cboPrimary.clear()
@@ -167,7 +185,10 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
         if self.rdoProfile.isChecked() and self.chkUnequallyDisposed.isChecked():
             comment_text += self.get_unqually_disposed()
 
+        comment_text += self.get_view()
+
         self.txtOutput.setText(comment_text)
+        pyperclip.copy(comment_text)
 
     def get_from_to(self) -> str:
         if not self.chkFromTo.isChecked() or not self.txtFrom.text() or not self.txtTo.text():
@@ -187,11 +208,11 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
 
     def get_dimension_type(self):
         if self.rdoProfile.isChecked():
-            return "Profile Of "
+            return "Profile of "
         if self.rdoFlatness.isChecked():
-            return "Flatness Of "
+            return "Flatness of "
         if self.rdoPerpendicularity.isChecked():
-            return "Perpendicularity Of "
+            return "Perpendicularity of "
 
     def get_tolerance(self) -> str:
         try:
@@ -221,6 +242,22 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
         if self.cboTertiary.currentIndex() > 0:
             datum_text += f"[{self.cboTertiary.currentText()}]"
         return datum_text
+
+    def get_view(self) -> str:
+        if self.rdoViewISO.isChecked():
+            return "\r\nLooking in ISO view as the part sits on the CMM"
+        if self.rdoXPlus.isChecked():
+            return "\r\nLooking from X+ as the part sits on the CMM"
+        if self.rdoXMinus.isChecked():
+            return "\r\nLooking from X- as the part sits on the CMM"
+        if self.rdoYPlus.isChecked():
+            return "\r\nLooking from Y+ as the part sits on the CMM"
+        if self.rdoYMinus.isChecked():
+            return "\r\nLooking from Y- as the part sits on the CMM"
+        if self.rdoZPlus.isChecked():
+            return "\r\nLooking from Z+ as the part sits on the CMM"
+        if self.rdoZMinus.isChecked():
+            return "\r\nLooking from Z- as the part sits on the CMM"
 
     # Private Functions
     def _get_formatted_numerical_value(self, numerical_value: float) -> str:
