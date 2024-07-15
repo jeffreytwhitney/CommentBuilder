@@ -44,6 +44,11 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
         self.txtAmount.setEnabled(self.chkUnequallyDisposed.isChecked())
 
     def _primary_datum_changed(self, index):
+        if self.rdoPerpendicularity.isChecked():
+            self.cboSecondary.setEnabled(False)
+            self.cboTertiary.setEnabled(False)
+            return
+
         self.cboSecondary.clear()
         self.cboTertiary.clear()
         self.cboSecondary.addItems(self.secondary_datum_list)
