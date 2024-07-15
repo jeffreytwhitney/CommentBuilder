@@ -1,1 +1,1 @@
-pyuic6 -x CommentBuilderMainWindow.ui -o CommentBuilderMainWindow.py
+pyuic6 -x CommentBuilderMainWindow.ui -o CommentBuilderMainWindow_GUI_TEMP.py
