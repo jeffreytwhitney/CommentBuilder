@@ -182,21 +182,9 @@ class Ui_CommentBuilderMainWindow_GUI(object):
         self.lblComment.setText(_translate("CommentBuilderMainWindowGUI", "Comment:"))
         self.lblTolerance.setText(_translate("CommentBuilderMainWindowGUI", "Tolerance:"))
         self.txtTolerance.setText(_translate("CommentBuilderMainWindowGUI", ".001"))
-        self.load_comboboxes()
 
-    def load_comboboxes(self):
-        primary_datum_list = ["Itself", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-                              "P",
-                              "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-        secondary_datum_list = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
-                                "Q",
-                                "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-        self.cboPrimary.clear()
-        self.cboSecondary.clear()
-        self.cboTertiary.clear()
-        self.cboPrimary.addItems(primary_datum_list)
-        self.cboSecondary.addItems(secondary_datum_list)
-        self.cboTertiary.addItems(secondary_datum_list)
+
+
 
 
 if __name__ == "__main__":
