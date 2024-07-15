@@ -1,0 +1,1 @@
+pyuic6 -x CommentBuilderMainWindow.ui -o CommentBuilderMainWindow.py
