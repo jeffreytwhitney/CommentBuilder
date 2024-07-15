@@ -120,7 +120,7 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
         self.generate_comment()
 
     def _secondary_datum_changed(self, index):
-
+        self.cboTertiary.setCurrentIndex(0)
         if self.cboSecondary.currentIndex() > 0:
             self.cboTertiary.clear()
             self.cboTertiary.addItems(self.secondary_datum_list)
