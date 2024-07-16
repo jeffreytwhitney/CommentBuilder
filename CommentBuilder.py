@@ -267,7 +267,7 @@ class CommentBuilderMainWindow(QtWidgets.QMainWindow, Ui_CommentBuilderMainWindo
     # Private Functions
     def _get_formatted_numerical_value(self, numerical_value: float) -> str:
         if numerical_value <= 1 and self.rdoMM.isChecked():
-            return f"{round_to_precision(numerical_value, .0001)}"
+            return f"{round_to_precision(numerical_value, .0001)}mm"
         return_val = f"{round_to_precision(numerical_value, .0001)}"
         return return_val[1:]
 
