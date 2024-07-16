@@ -156,7 +156,7 @@ class Ui_CommentBuilderMainWindow_GUI(object):
 
     def retranslateUi(self, CommentBuilderMainWindowGUI):
         _translate = QtCore.QCoreApplication.translate
-        CommentBuilderMainWindowGUI.setWindowTitle(_translate("CommentBuilderMainWindowGUI", "Content Builder"))
+        CommentBuilderMainWindowGUI.setWindowTitle(_translate("CommentBuilderMainWindowGUI", "Comment Builder"))
         self.rdoProfile.setText(_translate("CommentBuilderMainWindowGUI", "Profile"))
         self.rdoFlatness.setText(_translate("CommentBuilderMainWindowGUI", "Flatness"))
         self.rdoPerpendicularity.setText(_translate("CommentBuilderMainWindowGUI", "Perpendicularity"))
