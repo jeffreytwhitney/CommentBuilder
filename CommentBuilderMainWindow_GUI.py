@@ -1,4 +1,4 @@
-from PyQt6 import QtCore, QtWidgets
+from PyQt6 import QtCore, QtWidgets, QtGui
 
 
 class Ui_CommentBuilderMainWindow_GUI(object):
@@ -6,6 +6,9 @@ class Ui_CommentBuilderMainWindow_GUI(object):
     def setupUi(self, CommentBuilderMainWindowGUI):
         CommentBuilderMainWindowGUI.setObjectName("CommentBuilderMainWindowGUI")
         CommentBuilderMainWindowGUI.resize(506, 683)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("cb.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        CommentBuilderMainWindowGUI.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(parent=CommentBuilderMainWindowGUI)
         self.centralwidget.setObjectName("centralwidget")
         self.grpDimensionType = QtWidgets.QGroupBox(parent=self.centralwidget)
@@ -153,7 +156,7 @@ class Ui_CommentBuilderMainWindow_GUI(object):
 
     def retranslateUi(self, CommentBuilderMainWindowGUI):
         _translate = QtCore.QCoreApplication.translate
-        CommentBuilderMainWindowGUI.setWindowTitle(_translate("CommentBuilderMainWindowGUI", "MainWindow"))
+        CommentBuilderMainWindowGUI.setWindowTitle(_translate("CommentBuilderMainWindowGUI", "Content Builder"))
         self.rdoProfile.setText(_translate("CommentBuilderMainWindowGUI", "Profile"))
         self.rdoFlatness.setText(_translate("CommentBuilderMainWindowGUI", "Flatness"))
         self.rdoPerpendicularity.setText(_translate("CommentBuilderMainWindowGUI", "Perpendicularity"))
